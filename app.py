@@ -1,7 +1,9 @@
 def add(a, b):
+    # This function adds two numbers
     return a + b
 
 def multiply(a, b):
+    # This function multiply 2 numbers
     return a * b
 
 if __name__ == "__main__":
