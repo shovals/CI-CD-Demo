@@ -1,15 +1,34 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from flask import Flask
+import pytest
 from app import add, multiply, subtract, divide
+
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+# Your calculation functions
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+def subtract(a, b):
+    return a - b
+
+def divide(a, b):
+    return a / b
+
 @app.route("/")
 def home():
-    return f"Add: {add(2,3)}, Multiply: {multiply(2,3)}, Subtract: {subtract(7,3)}, Divide: {divide(30,5)}"
+    a, b = 2, 3
+    c, d = 7, 3
+    e, f = 30, 5
+    return jsonify({
+        "Add": add(a, b),
+        "Multiply": multiply(a, b),
+        "Subtract": subtract(c, d),
+        "Divide": divide(e, f)
+    })
 
 if __name__ == "__main__":
     import os
