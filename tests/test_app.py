@@ -2,7 +2,18 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from flask import Flask
 from app import *
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return f"Add: {add(2,3)}, Multiply: {multiply(2,3)}, Subtract: {subtract(7,3)}"
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
+
 
 def test_add():
     assert add(2, 3) == 5
