@@ -1,21 +1,19 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
@@ -26,3 +24,17 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Railway
+        uses: railwayapp/railway-action@v1
+        with:
+          service: your-service-name
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_KEY }}
