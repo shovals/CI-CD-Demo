@@ -3,16 +3,19 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from flask import Flask
-from app import *
+from app import add, multiply, subtract, divide
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return f"Add: {add(2,3)}, Multiply: {multiply(2,3)}, Subtract: {subtract(7,3)}"
+    return f"Add: {add(2,3)}, Multiply: {multiply(2,3)}, Subtract: {subtract(7,3)}, Divide: {divide(30,5)}"
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    # Bind to 0.0.0.0 and port from environment for Render
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 
 def test_add():
