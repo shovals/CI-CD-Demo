@@ -29,28 +29,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Install Railway CLI
         run: |
           curl -sSL https://railway.app/install.sh | sh
-          echo "PATH before update: $PATH"
           export PATH="$PATH:$HOME/.railway/bin"
-          echo "PATH after update: $PATH"
           railway --version
 
-      - name: Debug environment
-        run: env
-
-      - name: Link Railway Project
-        run: |
-          railway login --token ${{ secrets.RAILWAY_API_KEY }}
-          railway link
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_KEY }}
-
       - name: Deploy to Railway
-        run: railway up --detach
+        run: |
+          railway up --detach
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_KEY }}
