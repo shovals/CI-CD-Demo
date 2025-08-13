@@ -12,9 +12,8 @@ def home():
     return f"Add: {add(2,3)}, Multiply: {multiply(2,3)}, Subtract: {subtract(7,3)}, Divide: {divide(30,5)}"
 
 if __name__ == "__main__":
-    # Bind to 0.0.0.0 and port from environment for Render
     import os
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
     app.run(host="0.0.0.0", port=port)
 
 
