@@ -26,3 +26,7 @@ def test_multiply():
 def test_subtract():
     assert subtract(5,2) == 3
     assert subtract(15, 10) == 5
+
+def test_divide():
+    assert divide(20,4) == 5
+    assert divide(100, 10) == 10
