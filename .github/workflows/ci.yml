@@ -35,6 +35,6 @@ jobs:
       - name: Deploy to Railway
         uses: railwayapp/railway-deploy@v1
         with:
-          service: CI-CD-Demo
+          service: CI-CD-Demo # Updated project name
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_KEY }}
