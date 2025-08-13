@@ -11,6 +11,7 @@ def subtract(a, b):
     return a-b
 
 def divide(a, b):
+    # This function divide 2 numbers
     if b == 0:
         return "Can't divide in 0"
     else:
