@@ -32,9 +32,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install Railway CLI
+        run: |
+          curl -sSL https://railway.app/install.sh | sh
+          export PATH="$PATH:$HOME/.railway/bin"
+
+      - name: Link Railway Project
+        run: railway link --token ${{ secrets.RAILWAY_API_KEY }}
+
       - name: Deploy to Railway
-        uses: bervProject/railway-deploy@main
-        with:
-          service: CI-CD-Demo # Updated project name
+        run: railway up --detach
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_KEY }}
