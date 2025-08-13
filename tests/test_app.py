@@ -1,8 +1,8 @@
 import pytest
 import sys
-from app import add, multiply, subtract, divide
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from app import add, multiply, subtract, divide
 
 from flask import Flask, jsonify
 
